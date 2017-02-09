@@ -20,12 +20,12 @@ class DoctorPatientsController extends Controller
      *
      * @return JsonResponse
      */
-    public function setDoctorToPatientAction($did, $pid)
+    public function setDoctorToPatientAction($doctor_id, $patient_id)
     {
         $em = $this->getDoctrine()->getManager();
         
-        $doctor = $em->getRepository('AppBundle:Doctor')->selectById($did);
-        $patient = $em->getRepository('AppBundle:Patient')->selectById($pid);
+        $doctor = $em->getRepository('AppBundle:Doctor')->selectById($doctor_id);
+        $patient = $em->getRepository('AppBundle:Patient')->selectById($patient_id);
     
         $patient->setDoctor($doctor);
         
