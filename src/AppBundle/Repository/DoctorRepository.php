@@ -1,23 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Ivan Zdravkov
- * Date: 9.2.2017 г.
- * Time: 13:10
- */
-
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\Doctor;
-use Doctrine\ORM\EntityRepository;
-
 class DoctorRepository implements RepositoryInterface
 {
     /**
+     * @param $id
      * @return Doctor
      */
-    public function selectById($id){}
-    
+    public function selectById($id)
+    {
+        // TODO: Implement selectById() method.
+    }
     /**
      * @param \AppBundle\Entity\Hospital $hospital
      * @return Doctor[]

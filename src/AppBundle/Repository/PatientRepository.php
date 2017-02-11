@@ -2,9 +2,7 @@
 
 namespace AppBundle\Repository;
 
-
 use AppBundle\Entity\Patient;
-
 class PatientRepository implements RepositoryInterface
 {
 	/** @return Patient */
@@ -23,8 +21,5 @@ class PatientRepository implements RepositoryInterface
      * @param \AppBundle\Entity\Doctor $doctor
      * @return Patient[]
      */
-	public function selectByDoctor($doctor)
-    {
-        
-    }
+	public function selectByDoctor($doctor){}
 }

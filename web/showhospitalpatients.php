@@ -3,10 +3,10 @@
 use Symfony\Component\HttpFoundation\Request;
 
 // Modification by Ivan
+use Doctrine\ORM\EntityNotFoundException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use \AppBundle\Repository\HospitalRepository as Hospital;
 use \AppBundle\Repository\PatientRepository as Patients;
-use Doctrine\ORM\EntityNotFoundException;
 
 /** @var \Composer\Autoload\ClassLoader $loader */
 $loader = require __DIR__.'/../app/autoload.php';
@@ -24,9 +24,6 @@ function getHospitalPatients() {
 		));
 	}
 
-//	$hospitalRepository = new \AppBundle\Repository\HospitalRepository();
-//	$patientRepository = new \AppBundle\Repository\PatientRepository();
-    
 	$hospitalRepository = new Hospital();
 	$patientRepository = new Patients();
     

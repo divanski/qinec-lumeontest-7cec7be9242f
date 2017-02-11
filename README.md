@@ -36,11 +36,13 @@ About the file web/showhospitalpatients.php
    {
         public function getAction($id)
         {
-           $em = $this->getDoctrine()->getManager();
+           $hospital = $this->getDoctrine()
+                            ->getRepository('AppBundle:Hospital')
+                            ->selectById($id);
            
-           $hospital = $em->getRepository('AppBundle:Hospital')->selectById($id);
-           
-           $patients = $em->getRepository('AppBundle:Patient')->selectByHospital($hospital);
+           $patients = $this->getDoctrine()
+                            ->getRepository('AppBundle:Patient')
+                            ->selectByHospital($hospital);
            
            return new JsonResponse(array(
                        'patients' => $patients,

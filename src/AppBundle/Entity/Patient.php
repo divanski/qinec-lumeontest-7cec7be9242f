@@ -2,6 +2,11 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PatientRepository")
+ */
 class Patient
 {
 	const GENDER_MALE = 1;

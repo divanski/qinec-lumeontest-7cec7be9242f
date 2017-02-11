@@ -8,9 +8,12 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
-
-
+/**
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\DoctorRepository")
+ */
 class Doctor
 {
     /** @var  int */
@@ -24,6 +27,14 @@ class Doctor
     
     /** @var  Hospital */
     private $hospital;
+
+    /** @ORM\OneToMany(targetEntity="Patient", mappedBy="doctor") */
+    private $patients;
+
+    public function __construct()
+    {
+        $this->patients = new ArrayCollection();
+    }
     
     /**
      * @return int

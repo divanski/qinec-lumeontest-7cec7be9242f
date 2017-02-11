@@ -1,39 +1,45 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Ivan Zdravkov
- * Date: 9.2.2017 г.
- * Time: 13:42
- */
+<?php namespace AppBundle\Controller;
 
-namespace AppBundle\Controller;
-
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DoctorPatientsController extends Controller
 {
     /**
-     * @route /doctor-to-patient
-     * @param $did
-     * @param $pid
-     *
+     * @route /set-doctor
      * @return JsonResponse
      */
-    public function setDoctorToPatientAction($doctor_id, $patient_id)
+    public function setDoctorAction()
     {
+        $request = Request::createFromGlobals();
+        $doctor = $this->getDoctrine()
+            ->getRepository('AppBundle:Doctor')
+            ->find($request->get('doctor_id'));
+
+        if (!$doctor) {
+            throw $this->createNotFoundException(
+                'No Doctor found'
+            );
+        }
+
         $em = $this->getDoctrine()->getManager();
-        
-        $doctor = $em->getRepository('AppBundle:Doctor')->selectById($doctor_id);
-        $patient = $em->getRepository('AppBundle:Patient')->selectById($patient_id);
-    
+        $patient = $em->getRepository('AppBundle:Patient')
+                    ->find($request->get('patient_id'));
+
+        if (!$patient) {
+            throw $this->createNotFoundException(
+                'No Patient found'
+            );
+        }
+
         $patient->setDoctor($doctor);
-        
+        $em->flush();
+
         return new JsonResponse(array(
-            'patients' => $patient,
+            'patients' => $doctor->getPatients(),
             'doctor' => $doctor,
-            'msg' => 'Here are the patients for '. $doctor->getName()
+            'msg' => 'This is the all patients assigned to '. $doctor->getName(),
         ));
     }
-    
 }
