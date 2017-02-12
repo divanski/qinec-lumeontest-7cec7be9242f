@@ -25,7 +25,7 @@ Please answer the following question textually.
 
 The file web/showhospitalpatients.php is intended to retrieve a list of patients for a given hospital and return that in json format. Are there any comments you would like to make? What could be improved about the code ?
 
-#### Answer
+### Answer
 About the file web/showhospitalpatients.php 
 - In head of file I use "use" to create alias to address exact class what I need.
 - in if() statement I check if data of $hospitalId not " "(space), TRUE or NULL byte (“\ 0”) because the empty() return false in this case but isset() method check for that.
