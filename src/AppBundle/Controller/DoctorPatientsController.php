@@ -8,11 +8,11 @@ class DoctorPatientsController extends Controller
 {
     /**
      * @route /set-doctor
+     * @param Request $request
      * @return JsonResponse
      */
-    public function setDoctorAction()
+    public function setDoctorAction(Request $request)
     {
-        $request = Request::createFromGlobals();
         $doctor = $this->getDoctrine()
             ->getRepository('AppBundle:Doctor')
             ->find($request->get('doctor_id'));
